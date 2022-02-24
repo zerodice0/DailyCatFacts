@@ -1,17 +1,15 @@
 import { fetchRandomCatFact } from "../../modules/cat-facts/api";
 
 const cardContainer = document.createElement('article');
-cardContainer.classList.add('card');
-
 const cardHeader = document.createElement('header');
-cardHeader.classList.add('card-header');
-
 const cardBody = document.createElement('div');
-cardBody.classList.add('card-body');
-
 const message = document.createElement('div');
 const a = document.createElement('a');
 const image = document.createElement('img');
+
+cardContainer.classList.add('card');
+cardHeader.classList.add('card-header');
+cardBody.classList.add('card-body');
 
 enum LoadingStates {
   LOADING,
@@ -49,15 +47,16 @@ export default function Main (parents: HTMLElement) {
         setState({loading: LoadingStates.DONE, data: randomCatFact});
       } catch (e) {
         console.error(e);
+        message.innerText = 'Error';
         setState({...state, loading: LoadingStates.ERROR});
       }
     } else if (state.loading === LoadingStates.DONE) {
       message.innerHTML = `${state.data?.text}`;
     }
 
-    cardHeader.appendChild(image);
-    // cardBody.appendChild(a);
-    cardBody.appendChild(message);
+    cardHeader.appendChild(a);
+    cardHeader.appendChild(message);
+    cardBody.appendChild(image);
     cardContainer.appendChild(cardHeader);
     cardContainer.appendChild(cardBody);
     parents.appendChild(cardContainer);
