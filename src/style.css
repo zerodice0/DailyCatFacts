@@ -7,13 +7,14 @@
 }
 
 .card-header{
+  min-width: 100%;
   max-height: 75%;
   overflow: hidden;
   object-fit: center;
 }
 
 .card-header img {
-  max-width: 100%;
+  min-width: 100%;
 }
 
 .card-body {
